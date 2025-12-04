@@ -11,7 +11,11 @@ class Part1:
         self.invalid_id_sum = 0
         pass
 
-    def check_repeating(self, ID):
+    # def check_repeating(self, ID):
+    #     id_str = str(ID)
+    #     return re.match(r"^(?P<pattern>\d*)(?P=pattern)$", id_str) is not None
+
+    def check_repeating(self, ID: str):
         id_str = str(ID)
         # print(id_str)
         # print(len(id_str))
@@ -35,7 +39,7 @@ class Part1:
         print(f"Checking range {start} - {stop}")
         for id in range(start, stop + 1):
             if self.check_repeating(id):
-                print(f"----> invalid id {id}")
+                # print(f"----> invalid id {id}")
                 self.invalid_id_sum += id
 
     def run(self):
@@ -62,14 +66,13 @@ class Part2:
 
     def check_repeating(self, ID):
         id_str = str(ID)
-
         return re.match(r"^(?P<pattern>\d*)(?P=pattern)+$", id_str) is not None
 
     def check_range(self, start: int, stop: int):
         print(f"Checking range {start} - {stop}")
         for id in range(start, stop + 1):
             if self.check_repeating(id):
-                print(f"----> invalid id {id}")
+                # print(f"----> invalid id {id}")
                 self.invalid_id_sum += id
 
     def run(self):
