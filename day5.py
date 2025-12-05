@@ -3,6 +3,8 @@
 from advent_of_code import AdventOfCode
 from pprint import pprint
 
+from util.multi_range import MultiRange
+
 adc = AdventOfCode(__file__)
 
 
@@ -45,8 +47,7 @@ class Part1:
 
 class Part2:
     def __init__(self):
-        self.fresh_ranges=list()
-        self.ingredient_IDs=list()
+        self.fresh_ranges=MultiRange()
         pass
 
     def check_if_fresh(self,id):
@@ -61,32 +62,26 @@ class Part2:
         # print(data)
         print("Running")
         data = data.split("\n\n")
+
+        fresh_range = MultiRange()
         for r in data[0].split('\n'):
             ra = [int(x) for x in r.strip().split('-')]
-            # print(ra)
-            self.fresh_ranges.append(ra)
-        # pprint(self.fresh_ranges)
-        # pprint(data[1])
-        self.ingredient_IDs = [int (x ) for x in data[1].split()]
-        # pprint(self.ingredient_IDs)
+            self.fresh_ranges.add((ra[0],ra[1]))
 
-        # num_fresh = 0
-        all_fresh_IDs = set()
-        for r in self.fresh_ranges:
-            print(r)
-            for i in range(r[0],r[1]+1):
-                all_fresh_IDs.add(i)
-                if i % 100 == 0:
-                    print(i)
-        print("--------")
-        pprint(all_fresh_IDs)
-        print(f"Total fresh ingredients IDs: {len(all_fresh_IDs)}")
+        # self.fresh_ranges.print()
+
+        print(f"Total number of possible fresh ingredients {len(self.fresh_ranges)}")
+
+
+
+
+
 
 if __name__ == "__main__":
-    part1 = Part1()
+    # part1 = Part1()
 
-    part1.run()
+    # part1.run()
 
-    # part2 = Part2()
+    part2 = Part2()
 
-    # part2.run()
+    part2.run()
